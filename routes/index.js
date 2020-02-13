@@ -12,6 +12,7 @@ const firebaseConfig = {
   messagingSenderId: process.env.MESSAGING_SENDER_ID,
   appId: process.env.APP_ID,
   measurementId: process.env.MEASUREMENT_ID
+  
 };
 firebase.initializeApp(firebaseConfig);
 
@@ -20,7 +21,8 @@ router.get("/", function(req, res) {
   res.render("pages/login", { error: "" });
 });
 
-router.post("/signin", function(req, res) {
+router.post("/", function(req, res) {
+  res.json(req.body);
   firebase
     .auth()
     .signInWithEmailAndPassword(req.body.userEmail, req.body.userPassword)
