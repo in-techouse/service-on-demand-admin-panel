@@ -22,7 +22,6 @@ router.get("/", function(req, res) {
 });
 
 router.post("/", function(req, res) {
-  res.json(req.body);
   firebase
     .auth()
     .signInWithEmailAndPassword(req.body.userEmail, req.body.userPassword)
