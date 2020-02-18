@@ -10,9 +10,7 @@ const firebaseConfig = {
   projectId: process.env.PROJECT_ID,
   storageBucket: process.env.STORAGE_BUCKET,
   messagingSenderId: process.env.MESSAGING_SENDER_ID,
-  appId: process.env.APP_ID,
-  measurementId: process.env.MEASUREMENT_ID
-  
+  appId: process.env.APP_ID
 };
 firebase.initializeApp(firebaseConfig);
 
@@ -36,20 +34,20 @@ router.post("/", function(req, res) {
         .once("value")
         .then(admin => {
           if (
-            data === null ||
-            data === undefined ||
-            data.val() === null ||
-            data.val() === undefined
+            admin === null ||
+            admin === undefined ||
+            admin.val() === null ||
+            admin.val() === undefined
           ) {
+            res.render("pages/login", {
+              error: "You are not authorized to login here"
+            });
+          } else {
             req.session.id = admin.val().id;
             req.session.email = admin.val().email;
             req.session.name = admin.val().name;
             req.session.isAdmin = true;
             res.redirect("/admin");
-          } else {
-            res.render("pages/login", {
-              error: "You are not authorized to login here"
-            });
           }
         });
     })
