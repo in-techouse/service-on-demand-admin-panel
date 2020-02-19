@@ -15,21 +15,51 @@
                 <div class="widget-content nopadding">
                     <form class="form-horizontal" method="POST" action="/admin/createVendor">
                         <div class="control-group">
-                            <label class="control-label">Your Name</label>
+                            <label class="control-label">First Name</label>
                             <div class="controls">
-                                <input type="text" name="required" id="required">
+                                <input type="text" name="firstName" required >
+                            </div>
+
+                            <div class="control-group">
+                            <label class="control-label">Last Name</label>
+                            <div class="controls">
+                                <input type="text" name="lastName" required>
                             </div>
                         </div>
+
                         <div class="control-group">
                             <label class="control-label">Your Email</label>
                             <div class="controls">
-                                <input type="text" name="email" id="email">
+                                <input type="Email" name="email" required>
                             </div>
                         </div>
+
                         <div class="control-group">
-                            <label class="control-label">Date (only Number)</label>
+                            <label class="control-label">Phone Number</label>
                             <div class="controls">
-                                <input type="text" name="date" id="date">
+                                <input type="tel" name="phoneNumber" required>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label">Category</label>
+                            <div class="controls">
+                                <select name="category" required>
+                                    <option value="Electrician">Electrician</option>
+                                    <option value="Electrician">Plumber</option>
+                                    <option value="Electrician">AC</option>
+                                    <option value="Electrician">Electrician</option>
+                                    <option value="Electrician">Electrician</option>
+                                    <option value="Electrician">Electrician</option>
+                                    <option value="Electrician">Electrician</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label">Per hour Charge</label>
+                            <div class="controls">
+                                <input type="Number" name="perHourCharge" required>
                             </div>
                         </div>
                         <div class="form-actions">
