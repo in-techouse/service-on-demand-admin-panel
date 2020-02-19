@@ -16,6 +16,9 @@ firebase.initializeApp(firebaseConfig);
 
 /* GET home page. */
 router.get("/", function(req, res) {
+  if (req.session.isAdmin) {
+    res.redirect("/admin");
+  }
   res.render("pages/login", { error: "" });
 });
 
