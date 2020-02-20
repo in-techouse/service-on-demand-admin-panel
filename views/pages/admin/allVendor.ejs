@@ -18,41 +18,25 @@
                             <table class="table table-bordered data-table">
                                 <thead>
                                     <tr>
-                                        <th>Rendering engine</th>
-                                        <th>Browser</th>
-                                        <th>Platform(s)</th>
-                                        <th>Engine version</th>
+                                        <th>Image</th>
+                                        <th>Name</th>
+                                        <th>Phone Number</th>
+                                        <th>Category</th>
+                                        <th>Show Detail</th>
+                                        <th>Edit</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="gradeX">
-                                        <td>Trident</td>
-                                        <td>Internet
-                                            Explorer 4.0</td>
-                                        <td>Win 95+</td>
-                                        <td class="center">4</td>
-                                    </tr>
-                                    <tr class="gradeC">
-                                        <td>Trident</td>
-                                        <td>Internet
-                                            Explorer 5.0</td>
-                                        <td>Win 95+</td>
-                                        <td class="center">5</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Trident</td>
-                                        <td>Internet
-                                            Explorer 5.5</td>
-                                        <td>Win 95+</td>
-                                        <td class="center">5.5</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Trident</td>
-                                        <td>Internet
-                                            Explorer 6</td>
-                                        <td>Win 98+</td>
-                                        <td class="center">6</td>
-                                    </tr>
+                                    <% data.forEach(vendor => { %>
+                                        <tr>
+                                            <td>Image</td>
+                                            <td><%= vendor.val().firstName %> <%= vendor.val().lastName %></td>
+                                            <td><%= vendor.val().phone %> </td>
+                                            <td><%= vendor.val().category %></td>
+                                            <td><a href="#" class="btn btn-block btn-primary">SHOW DETAIL</a></td>
+                                            <td><a href="#" class="btn btn-block btn-warning">EDIT DETAIL</a></td>
+                                        </tr>
+                                    <% }); %>
                                 </tbody>
                             </table>
                         </div>
