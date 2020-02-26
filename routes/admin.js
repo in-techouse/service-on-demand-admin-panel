@@ -33,7 +33,7 @@ router.post("/createVendor", function(req, res) {
     lastName: req.body.lastName,
     email: req.body.email,
     category: req.body.category,
-    perHourCharge: req.body.perHourCharge,
+    perHourCharge: parseInt(req.body.perHourCharge),
     type: 1, // if type = 0 => Customer, and if type = 1 => Vendor
     image: "",
     rating: 0
