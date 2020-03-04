@@ -1,7 +1,7 @@
 <% extend('../../admin_layout.ejs') %>
 <div id="content-header">
     <div id="breadcrumb"> <a href="/admin" title="Go to Home" class="tip-bottom"><i class="icon-dashboard"></i>
-            Dashboard</a> <a href="#">Bookings</a> <a href="#" class="current">All Vendors</a> </div>
+            Dashboard</a> <a href="#">Vendors</a> <a href="#" class="current">All Vendors</a> </div>
     <h1>List All Vendors</h1>
 </div>
 <div class="container-fluid">
@@ -28,14 +28,14 @@
                                 </thead>
                                 <tbody>
                                     <% data.forEach(vendor => { %>
-                                        <tr>
-                                            <td>Image</td>
-                                            <td><%= vendor.val().firstName %> <%= vendor.val().lastName %></td>
-                                            <td><%= vendor.val().phone %> </td>
-                                            <td><%= vendor.val().category %></td>
-                                            <td><a href="#" class="btn btn-block btn-primary">SHOW DETAIL</a></td>
-                                            <td><a href="#" class="btn btn-block btn-warning">EDIT DETAIL</a></td>
-                                        </tr>
+                                    <tr>
+                                        <td>Image</td>
+                                        <td><%= vendor.val().firstName %> <%= vendor.val().lastName %></td>
+                                        <td><%= vendor.val().phone %> </td>
+                                        <td><%= vendor.val().category %></td>
+                                        <td><a href="#" class="btn btn-block btn-primary">SHOW DETAIL</a></td>
+                                        <td><a href="#" class="btn btn-block btn-warning">EDIT DETAIL</a></td>
+                                    </tr>
                                     <% }); %>
                                 </tbody>
                             </table>

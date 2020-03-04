@@ -58,4 +58,14 @@ router.post("/", function(req, res) {
       res.render("pages/login", { error: e.message });
     });
 });
+
+router.get("/logout", function(req, res) {
+  firebase.auth().signOut();
+  req.session.destroy(function(err) {
+    if (err) {
+      res.negotiate(err);
+    }
+    res.redirect("/");
+  });
+});
 module.exports = router;

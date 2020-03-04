@@ -14,7 +14,16 @@
   <link rel="stylesheet" href="/public/css/jquery.gritter.css" />
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
 
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+       https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-database.js"></script>
+
   <script src="/public/js/jquery.min.js"></script>
+  <script src="/public/js/upload.js"></script>
   <script src="/public/js/jquery.ui.custom.js"></script>
   <script src="/public/js/bootstrap.min.js"></script>
   <script src="/public/js/jquery.dataTables.min.js"></script>
@@ -38,7 +47,7 @@
             class="text">Welcome <%= session.name %></span><b class="caret"></b></a>
         <ul class="dropdown-menu">
           <li class="divider"></li>
-          <li><a href="login.html"><i class="icon-key"></i> Log Out</a></li>
+          <li><a href="/logout"><i class="icon-key"></i> Log Out</a></li>
         </ul>
       </li>
     </ul>
@@ -48,18 +57,54 @@
   <!--sidebar-menu-->
   <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
     <ul>
-      <li class="<%= action === 'dashboard' ? 'active' : ''%>"><a href="/admin/"><i class="icon icon-home"></i>
-          <span>Dashboard</span></a> </li>
-      <li class="<%= action === 'createVendor' ? 'active' : ''%>"> <a href="/admin/createVendor"><i
-            class="icon icon-signal"></i> <span>Create Venders</span></a> </li>
-      <li class="<%= action === 'allVendor' ? 'active' : ''%>"> <a href="/admin/allVendor"><i
-            class="icon icon-inbox"></i> <span>All Venders</span></a> </li>
-      <li class="<%= action === 'allUser' ? 'active' : ''%>"><a href="/admin/allUser"><i class="icon icon-th"></i>
-          <span>All users</span></a></li>
-      <li class="<%= action === 'allBooking' ? 'active' : ''%>"><a href="/admin/allBooking"><i
-            class="icon icon-fullscreen"></i> <span>All Booking</span></a></li>
-      <li class="<%= action === 'complains' ? 'active' : ''%>"> <a href="/admin/complains"><i
-            class="icon icon-th-list"></i> <span>Complains</span></a>
+      <li class="<%= action === 'dashboard' ? 'active' : ''%>">
+        <a href="/admin/">
+          <i class="icon icon-dashboard"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
+      <li class="<%= action === 'createCategory' ? 'active' : ''%>">
+        <a href="/admin/createCategory">
+          <i class="icon icon-th-large"></i>
+          <span>Create Category</span>
+        </a>
+      </li>
+      <li class="<%= action === 'allCategories' ? 'active' : ''%>">
+        <a href="/admin/allCategories">
+          <i class="icon icon-th-large"></i>
+          <span>All Categories</span>
+        </a>
+      </li>
+      <li class="<%= action === 'createVendor' ? 'active' : ''%>">
+        <a href="/admin/createVendor">
+          <i class="icon icon-user"></i>
+          <span>Create Vendor</span>
+        </a>
+      </li>
+      <li class="<%= action === 'allVendor' ? 'active' : ''%>">
+        <a href="/admin/allVendor">
+          <i class="icon icon-group"></i>
+          <span>All Vendors</span>
+        </a>
+      </li>
+      <li class="<%= action === 'allUser' ? 'active' : ''%>">
+        <a href="/admin/allUser">
+          <i class="icon icon-group"></i>
+          <span>All users</span>
+        </a>
+      </li>
+      <li class="<%= action === 'allBooking' ? 'active' : ''%>">
+        <a href="/admin/allBooking">
+          <i class="icon icon-bar-chart"></i>
+          <span>All Booking</span>
+        </a>
+      </li>
+      <li class="<%= action === 'complains' ? 'active' : ''%>">
+        <a href="/admin/complains">
+          <i class="icon icon-th-list"></i>
+          <span>Complains</span>
+        </a>
+      </li>
     </ul>
   </div>
   <!--sidebar-menu-->

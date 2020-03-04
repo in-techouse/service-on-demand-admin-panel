@@ -17,60 +17,64 @@
                         <div class="control-group">
                             <label class="control-label">First Name</label>
                             <div class="controls">
-                                <input type="text" name="firstName" required >
+                                <input type="text" name="firstName" required>
                             </div>
 
                             <div class="control-group">
-                            <label class="control-label">Last Name</label>
-                            <div class="controls">
-                                <input type="text" name="lastName" required>
+                                <label class="control-label">Last Name</label>
+                                <div class="controls">
+                                    <input type="text" name="lastName" required>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="control-group">
-                            <label class="control-label">Your Email</label>
-                            <div class="controls">
-                                <input type="Email" name="email" required>
+                            <div class="control-group">
+                                <label class="control-label">Your Email</label>
+                                <div class="controls">
+                                    <input type="Email" name="email" required>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="control-group">
-                            <label class="control-label">Phone Number</label>
-                            <div class="controls">
-                                <input type="tel" name="phoneNumber" required minlength="13" maxlength="13" value="+923">
-                                <p>Please enter the phone number with the country code. (e.g: +923001234567)</p>
+                            <div class="control-group">
+                                <label class="control-label">Phone Number</label>
+                                <div class="controls">
+                                    <input type="tel" name="phoneNumber" required minlength="13" maxlength="13"
+                                        value="+923">
+                                    <p>Please enter the phone number with the country code. (e.g: +923001234567)</p>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="control-group">
-                            <label class="control-label">Category</label>
-                            <div class="controls">
-                                <select name="category" required>
-                                    <option value="electrician">Electrician</option>
-                                    <option value="plumber">Plumber</option>
-                                    <option value="ac">AC</option>
-                                    <option value="appliances">Appliances</option>
-                                    <option value="tv">TV</option>
-                                    <option value="refrigerator">Refrigerator</option>
-                                    <option value="carpenter">Carpenter</option>
-                                    <option value="computer">Computer</option>
-                                    <option value="painting">Painting</option>
-                                    <option value="pestControl">Pest Control</option>
-                                    <option value="carWash">Car Wash</option>
-                                    <option value="homeSecurity">Home Security</option>
-                                </select>
+                            <div class="control-group">
+                                <label class="control-label">Category</label>
+                                <div class="controls">
+                                    <select name="category" required>
+                                        <% data.forEach(d=>{%>
+                                        <option value="<%= d.val().name %>"><%= d.val().name %></option>
+                                        <%});%>
+                                        <!-- <option value="electrician">Electrician</option>
+                                        <option value="plumber">Plumber</option>
+                                        <option value="ac">AC</option>
+                                        <option value="appliances">Appliances</option>
+                                        <option value="tv">TV</option>
+                                        <option value="refrigerator">Refrigerator</option>
+                                        <option value="carpenter">Carpenter</option>
+                                        <option value="computer">Computer</option>
+                                        <option value="painting">Painting</option>
+                                        <option value="pestControl">Pest Control</option>
+                                        <option value="carWash">Car Wash</option>
+                                        <option value="homeSecurity">Home Security</option> -->
+                                    </select>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="control-group">
-                            <label class="control-label">Per hour Charge</label>
-                            <div class="controls">
-                                <input type="Number" name="perHourCharge" required>
+                            <div class="control-group">
+                                <label class="control-label">Per hour Charge</label>
+                                <div class="controls">
+                                    <input type="Number" name="perHourCharge" required>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-actions">
-                            <input type="submit" value="SAVE VENDOR" class="btn btn-success">
-                        </div>
+                            <div class="form-actions">
+                                <input type="submit" value="SAVE VENDOR" class="btn btn-success">
+                            </div>
                     </form>
                 </div>
             </div>
