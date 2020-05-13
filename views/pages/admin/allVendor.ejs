@@ -29,11 +29,21 @@
                                 <tbody>
                                     <% data.forEach(vendor => { %>
                                     <tr>
-                                        <td>Image</td>
+                                        <td>
+                                            <%if (vendor.val().image && vendor.val().image.length > 0) {%>
+                                            <img src="<%= vendor.val().image%>"
+                                                style="border-radius: 50%; width: 130px;"
+                                                class="img-responsive img-thumbnail" />
+                                            <%} else {%>
+                                            <img src="/public/img/user.jpg" style="border-radius: 50%; width: 130px;"
+                                                class="img-responsive img-thumbnail" />
+                                            <%}%>
+                                        </td>
                                         <td><%= vendor.val().firstName %> <%= vendor.val().lastName %></td>
                                         <td><%= vendor.val().phone %> </td>
                                         <td><%= vendor.val().category %></td>
-                                        <td><a href="#" class="btn btn-block btn-primary">SHOW DETAIL</a></td>
+                                        <td><a href="/admin/vendorDetail?id=<%= vendor.val().id %>"
+                                                class="btn btn-block btn-primary">SHOW DETAIL</a></td>
                                         <td><a href="#" class="btn btn-block btn-warning">EDIT DETAIL</a></td>
                                     </tr>
                                     <% }); %>

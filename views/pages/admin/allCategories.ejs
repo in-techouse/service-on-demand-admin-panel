@@ -20,7 +20,6 @@
                                     <tr>
                                         <th>Image</th>
                                         <th>Name</th>
-                                        <th>Show Detail</th>
                                         <th>Edit</th>
                                     </tr>
                                 </thead>
@@ -32,8 +31,8 @@
                                                 class="img-responsive img-thumbnail" />
                                         </td>
                                         <td><%= cat.val().name %></td>
-                                        <td><a href="#" class="btn btn-block btn-primary">SHOW DETAIL</a></td>
-                                        <td><a href="#" class="btn btn-block btn-warning">EDIT DETAIL</a></td>
+                                        <td><a href="/admin/editCategory?id=<%= cat.val().id %>"
+                                                class="btn btn-block btn-warning">EDIT DETAIL</a></td>
                                     </tr>
                                     <% }); %>
 
