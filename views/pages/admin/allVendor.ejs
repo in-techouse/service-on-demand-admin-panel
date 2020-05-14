@@ -44,7 +44,8 @@
                                         <td><%= vendor.val().category %></td>
                                         <td><a href="/admin/vendorDetail?id=<%= vendor.val().id %>"
                                                 class="btn btn-block btn-primary">SHOW DETAIL</a></td>
-                                        <td><a href="#" class="btn btn-block btn-warning">EDIT DETAIL</a></td>
+                                        <td><a href="/admin/editVendor?id=<%= vendor.val().id %>"
+                                                class="btn btn-block btn-warning">EDIT DETAIL</a></td>
                                     </tr>
                                     <% }); %>
                                 </tbody>

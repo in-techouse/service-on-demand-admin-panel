@@ -15,12 +15,56 @@
                             <h5><%= data.firstName %>'s DETAIL</h5>
                         </div>
                         <div class="widget-content nopadding">
+                            <div class="container" style="padding: 3% 30% 3% 0%;">
+                                <div class="row card"
+                                    style="border: 2px solid gray; box-shadow: 3px 5px #888888; padding: 1% 1% 1% 1%; background-color: white; width: 40%; margin: 0 auto; border-radius: 25px;">
+                                    <div class="col-md-12">
+                                        <%if (data.image && data.image.length > 0) {%>
+                                        <img src="<%= data.image%>" style="border-radius: 50%; width: 130px;"
+                                            class="img-responsive img-thumbnail" />
+                                        <%} else {%>
+                                        <img src="/public/img/user.jpg" style="border-radius: 50%; width: 130px;"
+                                            class="img-responsive img-thumbnail" />
+                                        <%}%>
+                                    </div>
+    
+                                    <div class="col-md-12" style="text-align: left;">
+                                        <h4>Name:</h4>
+                                        <h5><%= data.firstName %> <%= data.lastName %></h5>
+                                    </div>
 
+                                    <div class="col-md-12" style="text-align: left;">
+                                        <h4>Email:</h4>
+                                        <h5><%= data.email %></h5>
+                                    </div>
+                                    <div class="col-md-12" style="text-align: left;">
+                                        <h4>Contact Number:</h4>
+                                        <h5><%= data.phone %></h5>
+                                    </div>
+                                    <% if (data.type === 1) {%>
+                                    <div class="col-md-12" style="text-align: left;">
+                                        <h4>Service Category:</h4>
+                                        <h5><%= data.category %></h5>
+                                    </div>
+                                    <div class="col-md-12" style="text-align: left;">
+                                        <h4>Per Hour Charge:</h4>
+                                        <h5><%= data.perHourCharge %> RS</h5>
+                                    </div>
+                                    <%}%>
+                                    <% if (data.type === 1) {%>
+                                    <a href="/admin/editVendor?id=<%= data.id %>" class="btn btn-warning btn-block"
+                                        style="margin-top: 20px; margin-bottom: 20px;">EDIT
+                                        DETAIL</a>
+                                    <%}%>
+                                </div>
+
+
+
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 </div>

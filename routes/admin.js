@@ -3,9 +3,9 @@ var firebase = require("firebase");
 var router = express.Router();
 
 router.get("/", function (req, res) {
-  if (!req.session.isAdmin) {
-    res.redirect("/");
-  }
+  // if (!req.session.isAdmin) {
+  //   res.redirect("/");
+  // }
   let count = {
     categories: 0,
     users: 0,
@@ -63,9 +63,8 @@ router.get("/", function (req, res) {
 });
 
 router.get("/createCategory", function (req, res) {
-  if (!req.session.isAdmin) {
-    res.redirect("/");
-  }
+  //   res.redirect("/");
+  // }
   res.render("pages/admin/createCategory", {
     action: "createCategory",
     session: req.session,
@@ -73,9 +72,9 @@ router.get("/createCategory", function (req, res) {
 });
 
 router.post("/createCategory", function (req, res) {
-  if (!req.session.isAdmin) {
-    res.redirect("/");
-  }
+  // if (!req.session.isAdmin) {
+  //   res.redirect("/");
+  // }
   let id = firebase.database().ref().child("Categories").push().key;
   let category = {
     id: id,
@@ -100,13 +99,14 @@ router.post("/createCategory", function (req, res) {
 });
 
 router.get("/allCategories", function (req, res) {
-  if (!req.session.isAdmin) {
-    res.redirect("/");
-  }
+  // if (!req.session.isAdmin) {
+  //   res.redirect("/");
+  // }
   firebase
     .database()
     .ref()
     .child("Categories")
+    .orderByChild("name")
     .once("value")
     .then((d) => {
       res.render("pages/admin/allCategories", {
@@ -125,9 +125,9 @@ router.get("/allCategories", function (req, res) {
 });
 
 router.get("/editCategory", function (req, res) {
-  if (!req.session.isAdmin) {
-    res.redirect("/");
-  }
+  // if (!req.session.isAdmin) {
+  //   res.redirect("/");
+  // }
   firebase
     .database()
     .ref()
@@ -147,9 +147,9 @@ router.get("/editCategory", function (req, res) {
 });
 
 router.post("/editCategory", function (req, res) {
-  if (!req.session.isAdmin) {
-    res.redirect("/");
-  }
+  // if (!req.session.isAdmin) {
+  //   res.redirect("/");
+  // }
   let category = {
     id: req.body.id,
     name: req.body.name,
@@ -170,13 +170,14 @@ router.post("/editCategory", function (req, res) {
 });
 
 router.get("/createVendor", function (req, res) {
-  if (!req.session.isAdmin) {
-    res.redirect("/");
-  }
+  // if (!req.session.isAdmin) {
+  //   res.redirect("/");
+  // }
   firebase
     .database()
     .ref()
     .child("Categories")
+    .orderByChild("name")
     .once("value")
     .then((c) => {
       res.render("pages/admin/createVendor", {
@@ -195,9 +196,9 @@ router.get("/createVendor", function (req, res) {
 });
 
 router.post("/createVendor", function (req, res) {
-  if (!req.session.isAdmin) {
-    res.redirect("/");
-  }
+  // if (!req.session.isAdmin) {
+  //   res.redirect("/");
+  // }
   let vendor = {
     id: req.body.phoneNumber,
     phone: req.body.phoneNumber,
@@ -278,10 +279,73 @@ router.get("/vendorDetail", function (req, res) {
     });
 });
 
+router.get("/editVendor", function (req, res) {
+  // if (!req.session.isAdmin) {
+  //   res.redirect("/");
+  // }
+  let id = req.query.id.replace(" ", "+");
+
+  firebase
+    .database()
+    .ref()
+    .child("Users")
+    .child(id)
+    .once("value")
+    .then((d) => {
+      firebase
+        .database()
+        .ref()
+        .child("Categories")
+        .orderByChild("name")
+        .once("value")
+        .then((c) => {
+          res.render("pages/admin/editVendor", {
+            action: "editVendor",
+            session: req.session,
+            vendor: d.val(),
+            data: c,
+          });
+        });
+    })
+    .catch((e) => {
+      res.redirect("/admin/allVendor");
+    });
+});
+
+router.post("/editVendor", function (req, res) {
+  // if (!req.session.isAdmin) {
+  //   res.redirect("/");
+  // }
+  let vendor = {
+    id: req.body.phoneNumber,
+    phone: req.body.phoneNumber,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    category: req.body.category,
+    perHourCharge: parseInt(req.body.perHourCharge),
+    type: 1, // if type = 0 => Customer, and if type = 1 => Vendor
+    image: "",
+    rating: req.body.rating,
+  };
+  firebase
+    .database()
+    .ref()
+    .child("Users")
+    .child(vendor.id)
+    .set(vendor)
+    .then((d) => {
+      res.redirect("/admin/allVendor");
+    })
+    .catch((e) => {
+      res.redirect("/admin/allVendor");
+    });
+});
+
 router.get("/allUser", function (req, res) {
-  if (!req.session.isAdmin) {
-    res.redirect("/");
-  }
+  // if (!req.session.isAdmin) {
+  //   res.redirect("/");
+  // }
   firebase
     .database()
     .ref()
@@ -306,9 +370,9 @@ router.get("/allUser", function (req, res) {
 });
 
 router.get("/allBooking", function (req, res) {
-  if (!req.session.isAdmin) {
-    res.redirect("/");
-  }
+  // if (!req.session.isAdmin) {
+  //   res.redirect("/");
+  // }
   res.render("pages/admin/allBooking", {
     action: "allBooking",
     session: req.session,
@@ -316,9 +380,9 @@ router.get("/allBooking", function (req, res) {
 });
 
 router.get("/complains", function (req, res) {
-  if (!req.session.isAdmin) {
-    res.redirect("/");
-  }
+  // if (!req.session.isAdmin) {
+  //   res.redirect("/");
+  // }
   res.render("pages/admin/complains", {
     action: "complains",
     session: req.session,
