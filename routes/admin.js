@@ -326,7 +326,7 @@ router.post("/editVendor", function (req, res) {
     perHourCharge: parseInt(req.body.perHourCharge),
     type: 1, // if type = 0 => Customer, and if type = 1 => Vendor
     image: "",
-    rating: req.body.rating,
+    rating: Integer.parseInt(req.body.rating),
   };
   firebase
     .database()
