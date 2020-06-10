@@ -373,20 +373,67 @@ router.get("/allBooking", function (req, res) {
   // if (!req.session.isAdmin) {
   //   res.redirect("/");
   // }
-  res.render("pages/admin/allBooking", {
-    action: "allBooking",
-    session: req.session,
-  });
+  firebase
+    .database()
+    .ref()
+    .child("Jobs")
+    .once("value")
+    .then((d) => {
+      res.render("pages/admin/allBooking", {
+        action: "allBooking",
+        session: req.session,
+        data: d,
+      });
+    })
+    .catch((e) => {
+      res.render("pages/admin/allBooking", {
+        action: "allBooking",
+        session: req.session,
+        data: [],
+      });
+    });
+});
+
+router.get("/bookingDetail", function (req, res) {
+  // if (!req.session.isAdmin) {
+  //   res.redirect("/");
+  // }
+
+  let id = req.query.id;
+  res.json(id);
 });
 
 router.get("/complains", function (req, res) {
   // if (!req.session.isAdmin) {
   //   res.redirect("/");
   // }
-  res.render("pages/admin/complains", {
-    action: "complains",
-    session: req.session,
-  });
+  firebase
+    .database()
+    .ref()
+    .child("Complains")
+    .once("value")
+    .then((d) => {
+      res.render("pages/admin/complains", {
+        action: "complains",
+        session: req.session,
+        data: d,
+      });
+    })
+    .catch((e) => {
+      res.render("pages/admin/allComplains", {
+        action: "allComplains",
+        session: req.session,
+        data: [],
+      });
+    });
+});
+router.get("/complainDetail", function (req, res) {
+  // if (!req.session.isAdmin) {
+  //   res.redirect("/");
+  // }
+
+  let id = req.query.id;
+  res.json(id);
 });
 
 module.exports = router;
