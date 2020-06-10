@@ -31,22 +31,22 @@
                                     <% data.forEach(booking => { %>
                                     <tr>
                                         <td>
-                                            <%if (booking.val().images && booking.val().images[0].length > 0) {%>
-                                            <img src="<%= booking.val().images[0]%>"
-                                                style="width: 200px; height: 200px;"
+                                            <%if (booking.images && booking.images[0].length > 0) {%>
+                                            <img src="<%= booking.images[0]%>" style="width: 200px; height: 200px;"
                                                 class="img-responsive img-thumbnail" />
                                             <%}%>
                                         </td>
-                                        <td><%= booking.val().category %></td>
-                                        <td><%= booking.val().date %> </td>
-                                        <td><%= booking.val().time %></td>
-                                        <td><%= booking.val().status %></td>
-                                        <td><a href="/admin/bookingDetail?id=<%= booking.val().id %>"
+                                        <td><%= booking.category %></td>
+                                        <td><%= booking.date %> </td>
+                                        <td><%= booking.time %></td>
+                                        <td><%= booking.status %></td>
+                                        <td><a href="/admin/bookingDetail?id=<%= booking.id %>"
                                                 class="btn btn-block btn-primary">SHOW DETAIL</a></td>
 
                                     </tr>
                                     <% }); %>
-                                </tbody>                            </table>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

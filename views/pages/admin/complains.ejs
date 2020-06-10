@@ -18,23 +18,19 @@
                             <table class="table table-bordered data-table">
                                 <thead>
                                     <tr>
-                                        <th>Complain</th>
                                         <th>DateTime</th>
-                                        
+                                        <th>Complain</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <% data.forEach(complain => { %>
-                                        <tr>
-                            
-                                            <td><%= complain.val().complain %></td>
-                                            <td><%= complain.val().dateTime %> </td>
-                                    
-                                            <td><a href="/admin/complainDetail?id=<%= complain.val().id %>"
-                                                    class="btn btn-block btn-primary">SHOW DETAIL</a></td>
-    
-                                        </tr>
-                                        <% }); %>
+                                    <tr>
+                                        <td><%= complain.dateTime %> </td>
+                                        <td><%= complain.complain %></td>
+                                        <td><a href="/admin/complainDetail?id=<%= complain.id %>"
+                                                class="btn btn-block btn-primary">SHOW DETAIL</a></td>
+                                    </tr>
+                                    <% }); %>
 
                                 </tbody>
                             </table>

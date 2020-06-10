@@ -1,0 +1,211 @@
+<% extend('../../admin_layout.ejs') %>
+<div id="content-header">
+    <div id="breadcrumb"> <a href="/admin" title="Go to Home" class="tip-bottom"><i class="icon-dashboard"></i>
+            Dashboard</a> <a href="#">Complains</a> <a href="#" class="current">Complain Detail</a> </div>
+    <h1>Complain Detail</h1>
+</div>
+<div class="container-fluid">
+    <hr>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-content nopadding">
+                    <div class="widget-box">
+                        <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+                            <h5>COMPLAIN DETAIL</h5>
+                        </div>
+                        <div class="row-fluid">
+                            <div class="span6">
+                                <div class="widget-box">
+                                    <div class="widget-title bg_ly" data-toggle="collapse" href="#collapseG2"><span
+                                            class="icon"><i class="icon-chevron-down"></i></span>
+                                        <h5>COMPLAIN DETAIL</h5>
+                                    </div>
+
+                                    <div class="widget-content nopadding collapse in" id="collapseG2">
+                                        <div id="chat-messages-inner">
+                                            <p id="msg-4" class="user-mark" style="display: block;">
+                                                <span class="msg-block">
+                                                    <strong>Date & Time</strong>
+                                                    <span class="msg"><%= complain.dateTime%></span>
+                                                </span>
+                                            </p>
+                                            <p id="msg-4" class="user-mark" style="display: block;">
+                                                <span class="msg-block">
+                                                    <strong>Complain</strong>
+                                                    <span class="msg"><%= complain.complain%></span>
+                                                </span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="widget-box">
+                                    <div class="widget-title bg_ly" data-toggle="collapse" href="#collapseG2"><span
+                                            class="icon"><i class="icon-chevron-down"></i></span>
+                                        <h5>JOB DETAIL</h5>
+                                    </div>
+
+                                    <div class="widget-content nopadding collapse in" id="collapseG2">
+                                        <div id="chat-messages-inner">
+                                            <p id="msg-4" class="user-mark"
+                                                style="display: block; width: 100%; height: 200px;">
+                                                <span class="msg-block" style="width: 200px; height: 200px;">
+                                                    <%if (job.images.length > 0 && job.images[0].length > 0){ %>
+                                                    <img src="<%= job.images[0]%>"
+                                                        style="width: 200px; height: 200px;" />
+                                                    <%}%>
+                                                </span>
+                                            </p>
+                                            <p>
+                                                <span class="msg-block" style="width: 200px; height: 200px;">
+                                                    <%if (job.images.length > 1 && job.images[1].length > 0){ %>
+                                                    <img src="<%= job.images[1]%>"
+                                                        style="width: 200px; height: 200px;" />
+                                                    <%}%>
+                                                </span>
+                                            </p>
+                                            <br />
+                                            <p id="msg-4" class="user-mark" style="display: block;">
+                                                <span class="msg-block">
+                                                    <strong>Address</strong>
+                                                    <span class="msg"><%= job.address%></span>
+                                                </span>
+                                            </p>
+                                            <p id="msg-4" class="user-mark" style="display: block;">
+                                                <span class="msg-block">
+                                                    <strong>Category</strong>
+                                                    <span class="msg"><%= job.category%></span>
+                                                </span>
+                                            </p>
+                                            <p id="msg-4" class="user-mark" style="display: block;">
+                                                <span class="msg-block">
+                                                    <strong>Date & Time</strong>
+                                                    <span class="msg"><%= job.date%> <%= job.time%></span>
+                                                </span>
+                                            </p>
+                                            <p id="msg-4" class="user-mark" style="display: block;">
+                                                <span class="msg-block">
+                                                    <strong>Description</strong>
+                                                    <span class="msg"><%= job.description %></span>
+                                                </span>
+                                            </p>
+                                            <p id="msg-4" class="user-mark" style="display: block;">
+                                                <span class="msg-block">
+                                                    <strong>Status</strong>
+                                                    <span class="msg"><%= job.status %></span>
+                                                </span>
+                                            </p>
+                                            <p id="msg-4" class="user-mark" style="display: block;">
+                                                <span class="msg-block">
+                                                    <strong>Budget</strong>
+                                                    <span class="msg"><%= job.budget %> RS.</span>
+                                                </span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="span6">
+                                <div class="widget-box">
+                                    <div class="widget-title bg_ly" data-toggle="collapse" href="#collapseG2"><span
+                                            class="icon"><i class="icon-chevron-down"></i></span>
+                                        <h5>CUSTOMER DETAIL</h5>
+                                    </div>
+                                    <div class="widget-content nopadding collapse in" id="collapseG2">
+                                        <div id="chat-messages-inner">
+                                            <p id="msg-4" class="user-mark"
+                                                style="display: block; width: 100%; height: 200px;">
+                                                <span class="msg-block" style="width: 200px; height: 200px;">
+                                                    <%if (user.image && user.image.length > 0){ %>
+                                                    <img src="<%= user.image %>"
+                                                        style="border-radius: 50%; width: 150px; height: 150px"
+                                                        class="img-responsive img-thumbnail" />
+                                                    <%}%>
+                                                </span>
+                                            </p>
+                                            <br />
+                                            <p id="msg-4" class="user-mark" style="display: block;">
+                                                <span class="msg-block">
+                                                    <strong>Name</strong>
+                                                    <span class="msg"><%= user.firstName%> <%= user.lastName%></span>
+                                                </span>
+                                            </p>
+                                            <p id="msg-4" class="user-mark" style="display: block;">
+                                                <span class="msg-block">
+                                                    <strong>Email</strong>
+                                                    <span class="msg"><%= user.email%></span>
+                                                </span>
+                                            </p>
+                                            <p id="msg-4" class="user-mark" style="display: block;">
+                                                <span class="msg-block">
+                                                    <strong>Contact</strong>
+                                                    <span class="msg"><%= user.phone %></span>
+                                                </span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% if (vendor !== null ){%>
+                                <div class="widget-box">
+                                    <div class="widget-title bg_ly" data-toggle="collapse" href="#collapseG2"><span
+                                            class="icon"><i class="icon-chevron-down"></i></span>
+                                        <h5>VENDOR DETAIL</h5>
+                                    </div>
+                                    <div class="widget-content nopadding collapse in" id="collapseG2">
+                                        <div id="chat-messages-inner">
+                                            <p id="msg-4" class="user-mark"
+                                                style="display: block; width: 100%; height: 200px;">
+                                                <span class="msg-block" style="width: 200px; height: 200px;">
+                                                    <%if (vendor.image && vendor.image.length > 0){ %>
+                                                    <img src="<%= vendor.image %>"
+                                                        style="border-radius: 50%; width: 150px; height: 150px"
+                                                        class="img-responsive img-thumbnail" />
+                                                    <%}%>
+                                                </span>
+                                            </p>
+                                            <br />
+                                            <p id="msg-4" class="user-mark" style="display: block;">
+                                                <span class="msg-block">
+                                                    <strong>Name</strong>
+                                                    <span class="msg"><%= vendor.firstName%>
+                                                    <%= vendor.lastName%></span>
+                                                </span>
+                                            </p>
+                                            <p id="msg-4" class="user-mark" style="display: block;">
+                                                <span class="msg-block">
+                                                    <strong>Email</strong>
+                                                    <span class="msg"><%= vendor.email%></span>
+                                                </span>
+                                            </p>
+                                            <p id="msg-4" class="user-mark" style="display: block;">
+                                                <span class="msg-block">
+                                                    <strong>Contact</strong>
+                                                    <span class="msg"><%= vendor.phone %></span>
+                                                </span>
+                                            </p>
+                                            <p id="msg-4" class="user-mark" style="display: block;">
+                                                <span class="msg-block">
+                                                    <strong>Service Category</strong>
+                                                    <span class="msg"><%= vendor.category %></span>
+                                                </span>
+                                            </p>
+                                            <p id="msg-4" class="user-mark" style="display: block;">
+                                                <span class="msg-block">
+                                                    <strong>Per Hour Charge</strong>
+                                                    <span class="msg"><%= vendor.perHourCharge %></span>
+                                                </span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <%}%>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -373,23 +373,28 @@ router.get("/allBooking", function (req, res) {
   // if (!req.session.isAdmin) {
   //   res.redirect("/");
   // }
+  let jobs = [];
   firebase
     .database()
     .ref()
     .child("Jobs")
     .once("value")
     .then((d) => {
+      d.forEach((job) => {
+        jobs.push(job.val());
+      });
+      jobs.reverse();
       res.render("pages/admin/allBooking", {
         action: "allBooking",
         session: req.session,
-        data: d,
+        data: jobs,
       });
     })
     .catch((e) => {
       res.render("pages/admin/allBooking", {
         action: "allBooking",
         session: req.session,
-        data: [],
+        data: jobs,
       });
     });
 });
@@ -400,30 +405,90 @@ router.get("/bookingDetail", function (req, res) {
   // }
 
   let id = req.query.id;
-  res.json(id);
+  firebase
+    .database()
+    .ref()
+    .child("Jobs")
+    .child(id)
+    .once("value")
+    .then((jobData) => {
+      if (jobData === null || jobData === undefined) {
+        res.redirect("/admin/allBooking");
+      }
+      firebase
+        .database()
+        .ref()
+        .child("Users")
+        .child(jobData.val().userId)
+        .once("value")
+        .then((userData) => {
+          if (userData === null || userData === undefined) {
+            res.redirect("/admin/allBooking");
+          }
+          if (
+            jobData.val().workerId === null ||
+            jobData.val().workerId === undefined ||
+            jobData.val().workerId.length < 1
+          ) {
+            res.render("pages/admin/bookingDetail", {
+              action: "bookingDetail",
+              session: req.session,
+              job: jobData.val(),
+              user: userData.val(),
+              vendor: null,
+            });
+          }
+          firebase
+            .database()
+            .ref()
+            .child("Users")
+            .child(jobData.val().workerId)
+            .once("value")
+            .then((vendorData) => {
+              if (vendorData === null || vendorData === undefined) {
+                res.redirect("/admin/allBooking");
+              }
+              res.render("pages/admin/bookingDetail", {
+                action: "bookingDetail",
+                session: req.session,
+                job: jobData.val(),
+                user: userData.val(),
+                vendor: vendorData.val(),
+              });
+            });
+        });
+    })
+    .catch((e) => {
+      res.redirect("/admin/allBooking");
+    });
 });
 
 router.get("/complains", function (req, res) {
   // if (!req.session.isAdmin) {
   //   res.redirect("/");
   // }
+  let complains = [];
   firebase
     .database()
     .ref()
     .child("Complains")
     .once("value")
     .then((d) => {
+      d.forEach((complain) => {
+        complains.push(complain.val());
+      });
+      complains.reverse();
       res.render("pages/admin/complains", {
         action: "complains",
         session: req.session,
-        data: d,
+        data: complains,
       });
     })
     .catch((e) => {
       res.render("pages/admin/allComplains", {
         action: "allComplains",
         session: req.session,
-        data: [],
+        data: complains,
       });
     });
 });
@@ -433,7 +498,61 @@ router.get("/complainDetail", function (req, res) {
   // }
 
   let id = req.query.id;
-  res.json(id);
+  firebase
+    .database()
+    .ref()
+    .child("Complains")
+    .child(id)
+    .once("value")
+    .then((c) => {
+      if (c.val() === null || c.val() === undefined) {
+        res.redirect("/admin/complains");
+      }
+      firebase
+        .database()
+        .ref()
+        .child("Jobs")
+        .child(c.val().jobId)
+        .once("value")
+        .then((jobData) => {
+          if (jobData === null || jobData === undefined) {
+            res.redirect("/admin/complains");
+          }
+          firebase
+            .database()
+            .ref()
+            .child("Users")
+            .child(jobData.val().userId)
+            .once("value")
+            .then((userData) => {
+              if (userData === null || userData === undefined) {
+                res.redirect("/admin/complains");
+              }
+              firebase
+                .database()
+                .ref()
+                .child("Users")
+                .child(jobData.val().workerId)
+                .once("value")
+                .then((vendorData) => {
+                  if (vendorData === null || vendorData === undefined) {
+                    res.redirect("/admin/complains");
+                  }
+                  res.render("pages/admin/complainDetail", {
+                    action: "complainDetail",
+                    session: req.session,
+                    complain: c.val(),
+                    job: jobData.val(),
+                    user: userData.val(),
+                    vendor: vendorData.val(),
+                  });
+                });
+            });
+        });
+    })
+    .catch((e) => {
+      res.redirect("/admin/complains");
+    });
 });
 
 module.exports = router;
